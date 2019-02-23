@@ -4,19 +4,19 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50721
 Source Host           : localhost:3306
-Source Database       : guns
+Source Database       : guns-v5.1
 
 Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-06-26 23:10:40
+Date: 2019-02-22 13:10:40
 */
 
-DROP DATABASE IF EXISTS guns;
-CREATE DATABASE IF NOT EXISTS guns DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS `guns-v5.1`;
+CREATE DATABASE IF NOT EXISTS  `guns-v5.1` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
-USE guns;
+USE  `guns-v5.1`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -207,8 +207,8 @@ CREATE TABLE `sys_notice` (
 -- ----------------------------
 -- Records of sys_notice
 -- ----------------------------
-INSERT INTO `sys_notice` VALUES ('6', '世界', '10', '欢迎使用Guns管理系统', '2017-01-11 08:53:20', '1');
-INSERT INTO `sys_notice` VALUES ('8', '你好', null, '你好', '2017-05-10 19:28:57', '1');
+INSERT INTO `sys_notice` VALUES ('6', '你好', '10', '欢迎使用客户关系管理系统', '2019-01-11 08:53:20', '1');
+INSERT INTO `sys_notice` VALUES ('8', '你好', null, '世界！', '2019-02-10 19:28:57', '1');
 
 -- ----------------------------
 -- Table structure for sys_operation_log
