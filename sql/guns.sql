@@ -4,7 +4,7 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50721
 Source Host           : localhost:3306
-Source Database       : guns-v5.1
+Source Database       : guns
 
 Target Server Type    : MYSQL
 Target Server Version : 50721
@@ -13,10 +13,10 @@ File Encoding         : 65001
 Date: 2019-02-22 13:10:40
 */
 
-DROP DATABASE IF EXISTS `guns-v5.1`;
-CREATE DATABASE IF NOT EXISTS  `guns-v5.1` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS `guns`;
+CREATE DATABASE IF NOT EXISTS  `guns` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
-USE  `guns-v5.1`;
+USE  `guns`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -364,6 +364,34 @@ CREATE TABLE `sys_login_log` (
 -- ----------------------------
 -- Records of sys_login_log
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for cst_customer
+-- ----------------------------
+DROP TABLE IF EXISTS `cst_customer`;
+CREATE TABLE `cst_customer` (
+  `cust_no` char(17) NOT NULL COMMENT '客户编号（编码格式为KHyyyyMMddhhmmss+3位序列数）',
+  `cust_name` varchar(100) NOT NULL COMMENT '客户名称',
+  `cust_region` varchar(50) DEFAULT NULL COMMENT '地区',
+  `cust_manager_id` int(11) DEFAULT NULL COMMENT '客户经理编号',
+  `cust_level` int(11) DEFAULT NULL COMMENT '客户等级',
+  `cust_satisfy` int(11) DEFAULT NULL COMMENT '满意度（1-5），默认为3',
+  `cust_credit` int(11) DEFAULT NULL COMMENT '信用度（1-5），默认为3',
+  `cust_addr` varchar(300) DEFAULT NULL COMMENT '地址',
+  `cust_zip` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '邮政编码',
+  `cust_tel` varchar(50) DEFAULT NULL COMMENT '电话',
+  `cust_website` varchar(50) DEFAULT NULL COMMENT '网址',
+  `cust_licence_no` varchar(50) DEFAULT NULL COMMENT '营业执照注册号',
+  `cust_chieftain` varchar(50) DEFAULT NULL COMMENT '法人',
+  `cust_bankroll` bigint(20) DEFAULT NULL COMMENT '注册资金',
+  `cust_turnover` bigint(20) DEFAULT NULL COMMENT '营业额',
+  `cust_status` char(1) DEFAULT NULL COMMENT '客户状态：1--正常；2--流失；3--删除。',
+  PRIMARY KEY (`cust_no`),
+  UNIQUE KEY `cust_name_UNIQUE` (`cust_name`),
+  KEY `customer_user_fk_idx` (`cust_manager_id`),
+  CONSTRAINT `customer_user_fk` FOREIGN KEY (`cust_manager_id`) REFERENCES `guns`.`sys_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='客户信息表';
+
 
 
 DROP TABLE IF EXISTS `test`;
