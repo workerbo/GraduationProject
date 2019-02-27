@@ -187,15 +187,15 @@ CREATE TABLE `sys_role` (
   `deptid` int(11) DEFAULT NULL COMMENT '部门名称',
   `tips` varchar(255) DEFAULT NULL COMMENT '提示',
   `version` int(11) DEFAULT NULL COMMENT '保留字段(暂时没用）',
-  PRIMARY KEY (`id`),
-    constraint `role_dept_fk` foreign key(`deptid`) references `sys_dept`(`id`)
+  PRIMARY KEY (`id`)
+   -- , constraint `role_dept_fk` foreign key(`deptid`) references `sys_dept`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '1', '0', '超级管理员', '24', 'administrator', '1');
-INSERT INTO `sys_role` VALUES ('5', '2', '1', '临时', '26', 'temp', null);
+INSERT INTO `sys_role` VALUES ('5', '2', '1', '一般管理员', '26', 'saledept', null);
 
 -- ----------------------------
 -- Table structure for sys_relation
@@ -205,9 +205,9 @@ CREATE TABLE `sys_relation` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `menuid` bigint(11) DEFAULT NULL COMMENT '菜单id',
   `roleid` int(11) DEFAULT NULL COMMENT '角色id',
-  PRIMARY KEY (`id`),
-  constraint `relation_menu_fk` foreign key(`menuid`) references `sys_menu`(`id`),
-  constraint `relation_role_fk` foreign key(`roleid`) references `sys_role`(`id`)
+  PRIMARY KEY (`id`)
+  -- .constraint `relation_menu_fk` foreign key(`menuid`) references `sys_menu`(`id`),
+  -- constraint `relation_role_fk` foreign key(`roleid`) references `sys_role`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3792 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
@@ -305,14 +305,14 @@ CREATE TABLE `sys_user` (
   `sex` int(11) DEFAULT NULL COMMENT '性别（1：男 2：女）',
   `email` varchar(45) DEFAULT NULL COMMENT '电子邮件',
   `phone` varchar(45) DEFAULT NULL COMMENT '电话',
-  `roleid` int(11) DEFAULT NULL COMMENT '角色id',
+  `roleid` char(1) DEFAULT NULL COMMENT '角色id',
   `deptid` int(11) DEFAULT NULL COMMENT '部门id',
   `status` int(11) DEFAULT NULL COMMENT '状态(1：启用  2：冻结  3：删除）',
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `version` int(11) DEFAULT NULL COMMENT '保留字段',
-  PRIMARY KEY (`id`),
-  constraint `user_dept_fk` foreign key(`deptid`) references `sys_dept`(`id`),
-  constraint `user_role_fk` foreign key(`roleid`) references `sys_role`(`id`)
+  PRIMARY KEY (`id`)
+  -- ,constraint `user_dept_fk` foreign key(`deptid`) references `sys_dept`(`id`)
+  
 
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
@@ -338,8 +338,8 @@ CREATE TABLE `sys_operation_log` (
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否成功',
   `message` text COMMENT '备注',
-  PRIMARY KEY (`id`),
-  constraint `operation_user_fk` foreign key(`userid`) references `sys_user`(`id`)
+  PRIMARY KEY (`id`)
+  -- ,constraint `operation_user_fk` foreign key(`userid`) references `sys_user`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=554 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
@@ -357,8 +357,8 @@ CREATE TABLE `sys_login_log` (
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否执行成功',
   `message` text COMMENT '具体消息',
   `ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
-  PRIMARY KEY (`id`),
-  constraint `loginlog_user_fk` foreign key(`userid`) references `sys_user`(`id`)
+  PRIMARY KEY (`id`)
+  -- ,constraint `loginlog_user_fk` foreign key(`userid`) references `sys_user`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=utf8 COMMENT='登录记录';
 
 -- ----------------------------
@@ -370,13 +370,13 @@ CREATE TABLE `sys_login_log` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cst_customer`;
 CREATE TABLE `cst_customer` (
-  `cust_no` char(17) NOT NULL COMMENT '客户编号（编码格式为KHyyyyMMddhhmmss+3位序列数）',
+  `cust_no` int(65) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `cust_name` varchar(100) NOT NULL COMMENT '客户名称',
   `cust_region` varchar(50) DEFAULT NULL COMMENT '地区',
   `cust_manager_id` int(11) DEFAULT NULL COMMENT '客户经理编号',
   `cust_level` int(11) DEFAULT NULL COMMENT '客户等级',
-  `cust_satisfy` int(11) DEFAULT NULL COMMENT '满意度（1-5），默认为3',
-  `cust_credit` int(11) DEFAULT NULL COMMENT '信用度（1-5），默认为3',
+  `cust_satisfy` int(11) DEFAULT 3 COMMENT '满意度（1-5），默认为3',
+  `cust_credit` int(11) DEFAULT 3 COMMENT '信用度（1-5），默认为3',
   `cust_addr` varchar(300) DEFAULT NULL COMMENT '地址',
   `cust_zip` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '邮政编码',
   `cust_tel` varchar(50) DEFAULT NULL COMMENT '电话',
@@ -387,12 +387,24 @@ CREATE TABLE `cst_customer` (
   `cust_turnover` bigint(20) DEFAULT NULL COMMENT '营业额',
   `cust_status` char(1) DEFAULT NULL COMMENT '客户状态：1--正常；2--流失；3--删除。',
   PRIMARY KEY (`cust_no`),
-  UNIQUE KEY `cust_name_UNIQUE` (`cust_name`),
-  KEY `customer_user_fk_idx` (`cust_manager_id`),
-  CONSTRAINT `customer_user_fk` FOREIGN KEY (`cust_manager_id`) REFERENCES `guns`.`sys_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `cust_name_UNIQUE` (`cust_name`)
+  -- ,CONSTRAINT `customer_user_fk` FOREIGN KEY (`cust_manager_id`) REFERENCES `guns`.`sys_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='客户信息表';
 
 
+
+
+DROP TABLE IF EXISTS `biz_order`;
+CREATE TABLE `biz_order` (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+`goods_name` varchar(255) DEFAULT NULL COMMENT '商品名称',
+`place` varchar(255) DEFAULT NULL COMMENT '下单地点',
+`create_time` datetime DEFAULT NULL COMMENT '下单时间',
+`user_name` varchar(255) DEFAULT NULL COMMENT '下单用户名称',
+`user_phone` varchar(255) DEFAULT NULL COMMENT '下单用户电话',
+PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='订单表';
+ 
 
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
@@ -400,5 +412,6 @@ CREATE TABLE `test` (
   `bbb` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`aaa`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
 
 SET FOREIGN_KEY_CHECKS = 1;
