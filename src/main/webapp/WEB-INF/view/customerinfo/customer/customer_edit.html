@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="custNo" name="主键" value="${item.custNo}" underline="true"/>
+                            <#input id="custName" name="客户名称" value="${item.custName}" underline="true"/>
+                            <#input id="custRegion" name="地区" value="${item.custRegion}" underline="true"/>
+                            <#input id="custManagerId" name="客户经理编号" value="${item.custManagerId}" underline="true"/>
+                            <#input id="custLevel" name="客户等级" value="${item.custLevel}" underline="true"/>
+                            <#input id="custSatisfy" name="满意度（1-5），默认为3" value="${item.custSatisfy}" underline="true"/>
+                            <#input id="custCredit" name="信用度（1-5），默认为3" value="${item.custCredit}" underline="true"/>
+                            <#input id="custAddr" name="地址" value="${item.custAddr}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="custZip" name="邮政编码" value="${item.custZip}" underline="true"/>
+                            <#input id="custTel" name="电话" value="${item.custTel}" underline="true"/>
+                            <#input id="custWebsite" name="网址" value="${item.custWebsite}" underline="true"/>
+                            <#input id="custLicenceNo" name="营业执照注册号" value="${item.custLicenceNo}" underline="true"/>
+                            <#input id="custChieftain" name="法人" value="${item.custChieftain}" underline="true"/>
+                            <#input id="custBankroll" name="注册资金" value="${item.custBankroll}" underline="true"/>
+                            <#input id="custTurnover" name="营业额" value="${item.custTurnover}" underline="true"/>
+                            <#input id="custStatus" name="客户状态：1--正常；2--流失；3--删除。" value="${item.custStatus}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CustomerInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CustomerInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/customerinfo/customer/customer_info.js"></script>
+@}
