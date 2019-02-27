@@ -445,8 +445,8 @@ CREATE TABLE `guns`.`cst_linkman` (
   `lkm_memo` VARCHAR(444) NULL COMMENT '备注',
   PRIMARY KEY (`id`))
 COMMENT = '客户联系人表';
-DROP TABLE IF EXISTS `guns`.` cst_lost` ;
-CREATE TABLE `guns`.` cst_lost` (
+DROP TABLE IF EXISTS `guns`.`cst_lost` ;
+CREATE TABLE `guns`.`cst_lost` (
   `id` INT NOT NULL COMMENT  '编号（主键自动增长1）',
   `lst_cust_no` INT(65) NOT NULL COMMENT '客户编号',
   `lst_cust_manager_id` INT(65) NOT NULL COMMENT '客户经理编号',
