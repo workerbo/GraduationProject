@@ -406,6 +406,83 @@ PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='订单表';
  
 
+DROP TABLE IF EXISTS `guns`.`sal_chance`;
+CREATE TABLE `guns`.`sal_chance` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `chc_source` VARCHAR(45) NOT NULL COMMENT '机会来源',
+  `chc_cust_name` VARCHAR(45) NULL COMMENT '客户名称',
+  `chc_title` VARCHAR(45) NOT NULL COMMENT '概要',
+  `chc_rate` INT NOT NULL COMMENT '成功机率',
+  `chc_linkman` VARCHAR(45) NULL COMMENT '联系人',
+  `chc_tel` VARCHAR(45) NULL COMMENT '联系电话',
+  `chc_create_id` int(65) NOT NULL COMMENT '创建人编号',
+  `chc_create_date` DATETIME NULL COMMENT '创建时间',
+  `chc_due_id` BIGINT NULL COMMENT '指派的客户经理编号',
+  `chc_due_date` DATETIME NULL COMMENT '指派时间',
+  `chc_status` CHAR(1) NULL COMMENT '状态：1--未指派；2--已指派3--开发成功；4--终止开发(开发失败)。',
+  PRIMARY KEY (`id`))
+COMMENT = '机会销售表';
+
+DROP TABLE IF EXISTS `guns`.`cst_activity` ;
+CREATE TABLE `guns`.`cst_activity` (
+`id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '主键' ,
+ `atv_cust_no` INT(65) NULL COMMENT '客户编号' ,
+ `atv_date` DATETIME NOT NULL COMMENT '交往日期' ,
+ `atv_place` VARCHAR(45) NOT NULL COMMENT '交往地点' ,
+  `atv_title` VARCHAR(200) NULL COMMENT '交往概要' ,
+  `atv_desc` VARCHAR(2000) NULL DEFAULT NULL COMMENT '详细信息' , 
+ PRIMARY KEY (`id`))COMMENT = '交往记录表';
+ 
+DROP TABLE IF EXISTS `guns`.`cst_linkman` ;
+CREATE TABLE `guns`.`cst_linkman` (
+  `id` INT NOT NULL COMMENT '联系人编号（主键自动增长）',
+  `lkm_cust_no` INT(65) NOT NULL COMMENT '客户编号',
+  `lkm_name` VARCHAR(45) NULL COMMENT '联系人名称',
+  `lkm_sex` VARCHAR(5) NULL COMMENT '性别',
+  `lkm_postion` VARCHAR(45) NULL COMMENT '职位',
+  `lkm_tel` VARCHAR(45) NOT NULL COMMENT '办公室电话',
+  `lkm_mobile` VARCHAR(45) NULL COMMENT '手机',
+  `lkm_memo` VARCHAR(444) NULL COMMENT '备注',
+  PRIMARY KEY (`id`))
+COMMENT = '客户联系人表';
+DROP TABLE IF EXISTS `guns`.` cst_lost` ;
+CREATE TABLE `guns`.` cst_lost` (
+  `id` INT NOT NULL COMMENT  '编号（主键自动增长1）',
+  `lst_cust_no` INT(65) NOT NULL COMMENT '客户编号',
+  `lst_cust_manager_id` INT(65) NOT NULL COMMENT '客户经理编号',
+  `lst_last_order_date` DATETIME NULL COMMENT '上次下单时间',
+  `lst_lost_date` DATETIME NULL COMMENT '确认流失时间',
+  `lst_delay` VARCHAR(4000) NULL COMMENT '暂缓措施',
+  `lst_reason` VARCHAR(2000) NULL COMMENT '流失原因',
+  `lst_status` CHAR(1) NOT NULL COMMENT '流失状态 1-警告，2-暂缓流失，3-已流失',
+  PRIMARY KEY (`id`))
+COMMENT = '客户流失表';
+DROP TABLE IF EXISTS `guns`.` cst_customerservice` ;
+CREATE TABLE `guns`.`cst_customerservice` (
+  `id` INT NOT NULL COMMENT '服务编号',
+  `svr_type` VARCHAR(45) NOT NULL COMMENT '服务类型',
+  `svr_title` VARCHAR(450) NOT NULL COMMENT '服务概要',
+  `svr_cust_no` INT(65) NULL COMMENT '客户编号',
+  `svr_status` VARCHAR(45) NOT NULL COMMENT '服务状态',
+  `svr_request` VARCHAR(4000) NOT NULL COMMENT '服务请求',
+  `svr_create_id` VARCHAR(45) NOT NULL COMMENT '创建人编号',
+  `svr_create_date` DATETIME NULL COMMENT '创建日期',
+  `svr_due_id` INT(65) NULL COMMENT '分配给某人的编号',
+  `svr_due_date` DATETIME NULL COMMENT '分配时间',
+  `svr_deal` VARCHAR(45) NULL COMMENT '服务处理',
+  `svr_deal_date` DATETIME NULL COMMENT '处理日期',
+  `svr_result` VARCHAR(450) NULL COMMENT '处理结果',
+  `svr_satisfy` INT NULL COMMENT '满意度',
+  PRIMARY KEY (`id`))
+COMMENT = '客户服务表';
+
+CREATE TABLE `guns`.`sal_plan` (
+  `id` INT NOT NULL COMMENT '计划编号',
+  `pla_date` DATETIME NOT NULL COMMENT '日期',
+  `pla_todo` VARCHAR(655) NOT NULL COMMENT '计划项',
+  `pla_result` VARCHAR(495) NULL COMMENT '执行结果',
+  PRIMARY KEY (`id`))
+COMMENT = '客户开发计划表';
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
   `aaa` int(11) NOT NULL AUTO_INCREMENT,
