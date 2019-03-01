@@ -1,0 +1,31 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+
+                            <#input id="stkProdId" name="商品编号" underline="true"/>
+                            <#input id="stkWarehouse" name="仓库名称"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="stkWare" name="货位" underline="true"/>
+                            <#input id="stkCount" name="数量" underline="true"/>
+                            <#input id="stkMemo" name="备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="StorageInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="StorageInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/storagemgr/storage/storage_info.js"></script>
+@}

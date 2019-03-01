@@ -1,0 +1,30 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+
+                            <#input id="odrCustomerNo" name="订单客户公司编号" underline="true"/>
+                            <#input id="odrDate" name="订单日期"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="odrAddr" name="地址" underline="true"/>
+                            <#input id="odrStatus" name="状态(5:已发货  6:已回款)" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrdersInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrdersInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/ordermgr/orders/orders_info.js"></script>
+@}

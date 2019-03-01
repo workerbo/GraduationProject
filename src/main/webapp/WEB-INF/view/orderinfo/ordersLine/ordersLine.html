@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>订单明细管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="OrdersLine.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="OrdersLineTableToolbar" role="group">
+                            @if(shiro.hasPermission("/ordersLine/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="OrdersLine.openAddOrdersLine()"/>
+                            @}
+                            @if(shiro.hasPermission("/ordersLine/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="OrdersLine.openOrdersLineDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/ordersLine/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="OrdersLine.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="OrdersLineTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/orderinfo/ordersLine/ordersLine.js"></script>
+@}
