@@ -2,7 +2,10 @@ package cn.stylefeng.guns.modular.system.model;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -21,6 +24,7 @@ public class Linkman extends Model<Linkman> {
     /**
      * 联系人编号（主键自动增长）
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     /**
      * 客户编号

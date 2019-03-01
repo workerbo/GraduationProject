@@ -3,7 +3,9 @@ package cn.stylefeng.guns.modular.system.model;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -24,6 +26,7 @@ public class Plan extends Model<Plan> {
     /**
      * 计划编号
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     /**
      * 日期

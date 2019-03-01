@@ -435,7 +435,7 @@ CREATE TABLE `guns`.`cst_activity` (
  
 DROP TABLE IF EXISTS `guns`.`cst_linkman` ;
 CREATE TABLE `guns`.`cst_linkman` (
-  `id` INT NOT NULL COMMENT '联系人编号（主键自动增长）',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '联系人编号（主键自动增长）',
   `lkm_cust_no` INT(65) NOT NULL COMMENT '客户编号',
   `lkm_name` VARCHAR(45) NULL COMMENT '联系人名称',
   `lkm_sex` VARCHAR(5) NULL COMMENT '性别',
@@ -445,9 +445,13 @@ CREATE TABLE `guns`.`cst_linkman` (
   `lkm_memo` VARCHAR(444) NULL COMMENT '备注',
   PRIMARY KEY (`id`))
 COMMENT = '客户联系人表';
+
+
+
+
 DROP TABLE IF EXISTS `guns`.`cst_lost` ;
 CREATE TABLE `guns`.`cst_lost` (
-  `id` INT NOT NULL COMMENT  '编号（主键自动增长1）',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT  '编号（主键自动增长1）',
   `lst_cust_no` INT(65) NOT NULL COMMENT '客户编号',
   `lst_cust_manager_id` INT(65) NOT NULL COMMENT '客户经理编号',
   `lst_last_order_date` DATETIME NULL COMMENT '上次下单时间',
@@ -457,9 +461,12 @@ CREATE TABLE `guns`.`cst_lost` (
   `lst_status` CHAR(1) NOT NULL COMMENT '流失状态 1-警告，2-暂缓流失，3-已流失',
   PRIMARY KEY (`id`))
 COMMENT = '客户流失表';
+
+
+
 DROP TABLE IF EXISTS `guns`.` cst_customerservice` ;
 CREATE TABLE `guns`.`cst_customerservice` (
-  `id` INT NOT NULL COMMENT '服务编号',
+  `id` INT NOT NULL  AUTO_INCREMENT COMMENT '服务编号',
   `svr_type` VARCHAR(45) NOT NULL COMMENT '服务类型',
   `svr_title` VARCHAR(450) NOT NULL COMMENT '服务概要',
   `svr_cust_no` INT(65) NULL COMMENT '客户编号',
@@ -474,21 +481,61 @@ CREATE TABLE `guns`.`cst_customerservice` (
   `svr_result` VARCHAR(450) NULL COMMENT '处理结果',
   `svr_satisfy` INT NULL COMMENT '满意度',
   PRIMARY KEY (`id`))
-COMMENT = '客户服务表';
+COMMENT = '客户服务表';sal_plan
 
+
+DROP TABLE IF EXISTS `guns`.`sal_plan`;
 CREATE TABLE `guns`.`sal_plan` (
-  `id` INT NOT NULL COMMENT '计划编号',
+  `id` INT NOT  NULL AUTO_INCREMENT COMMENT '计划编号',
   `pla_date` DATETIME NOT NULL COMMENT '日期',
   `pla_todo` VARCHAR(655) NOT NULL COMMENT '计划项',
   `pla_result` VARCHAR(495) NULL COMMENT '执行结果',
   PRIMARY KEY (`id`))
 COMMENT = '客户开发计划表';
-DROP TABLE IF EXISTS `test`;
-CREATE TABLE `test` (
-  `aaa` int(11) NOT NULL AUTO_INCREMENT,
-  `bbb` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`aaa`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
+
+
+DROP TABLE IF EXISTS `guns`.`orders`;
+CREATE TABLE `guns`.`orders` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '订单编号（自动增长1，1）',
+  `odr_customer_no` INT(67) NOT NULL COMMENT '订单客户公司编号',
+  `odr_date` DATETIME NOT NULL COMMENT '订单日期',
+  `odr_addr` VARCHAR(450) NULL COMMENT '地址',
+  `odr_status` CHAR(1) NULL COMMENT '状态(5:已发货  6:已回款)',
+  PRIMARY KEY (`id`))
+COMMENT = '订单表';
+
+DROP TABLE IF EXISTS `guns`.`orders_line`;
+CREATE TABLE `guns`.`orders_line` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '明细编号',
+  `odd_order_id` BIGINT NOT NULL COMMENT '订单编号',
+  `odd_prod_id` BIGINT NOT NULL COMMENT '商品编号',
+  `odd_count` INT NULL COMMENT '数量',
+  `odd_unit` VARCHAR(45) NULL COMMENT '单位',
+  PRIMARY KEY (`id`))
+COMMENT = '订单明细表';
+
+DROP TABLE IF EXISTS `guns`.`product`;
+CREATE TABLE `guns`.`product` (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT '商品编号（自动增长1，1）',
+    `prod_name` VARCHAR(45) NOT NULL COMMENT '商品名称',
+    `prod_type` VARCHAR(45) NOT NULL,
+    `prod_batch` VARCHAR(100) NULL COMMENT '批号',
+    `prod_unit` VARCHAR(45) NULL COMMENT '单位',
+    `prod_price` INT NULL COMMENT '价格',
+    `prod_memo` VARCHAR(450) NULL COMMENT '备注',
+    PRIMARY KEY (`id`)
+)  COMMENT='商品表';
+
+DROP TABLE IF EXISTS `guns`.`storage`;
+CREATE TABLE `guns`.`storage` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '仓库编号自动增长1，1',
+  `stk_prod_id` INT NOT NULL COMMENT '商品编号',
+  `stk_warehouse` VARCHAR(45) NOT NULL COMMENT '仓库名称',
+  `stk_ware` VARCHAR(45) NOT NULL COMMENT '货位',
+  `stk_count` INT NOT NULL COMMENT '数量',
+  `stk_memo` VARCHAR(450) NULL COMMENT '备注',
+  PRIMARY KEY (`id`))
+COMMENT = '仓库表';
 
 SET FOREIGN_KEY_CHECKS = 1;

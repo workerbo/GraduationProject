@@ -3,7 +3,9 @@ package cn.stylefeng.guns.modular.system.model;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -24,6 +26,7 @@ public class Lost extends Model<Lost> {
     /**
      * 编号（主键自动增长1）
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     /**
      * 客户编号
@@ -44,6 +47,7 @@ public class Lost extends Model<Lost> {
     /**
      * 确认流失时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @TableField("lst_lost_date")
     private Date lstLostDate;
     /**
