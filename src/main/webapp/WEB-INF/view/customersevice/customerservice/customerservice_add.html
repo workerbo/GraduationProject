@@ -1,0 +1,39 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+
+                            <#input id="svrType" name="服务类型" underline="true"/>
+                            <#input id="svrTitle" name="服务概要" underline="true"/>
+                            <#input id="svrCustNo" name="客户编号" underline="true"/>
+                            <#input id="svrStatus" name="服务状态" underline="true"/>
+                            <#input id="svrRequest" name="服务请求" underline="true"/>
+                            <#input id="svrCreateId" name="创建人编号"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="svrCreateDate" name="创建日期" underline="true"/>
+                            <#input id="svrDueId" name="分配给某人的编号" underline="true"/>
+                            <#input id="svrDueDate" name="分配时间" underline="true"/>
+                            <#input id="svrDeal" name="服务处理" underline="true"/>
+                            <#input id="svrDealDate" name="处理日期" underline="true"/>
+                            <#input id="svrResult" name="处理结果" underline="true"/>
+                            <#input id="svrSatisfy" name="满意度" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CustomerserviceInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CustomerserviceInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/customersevice/customerservice/customerservice_info.js"></script>
+@}

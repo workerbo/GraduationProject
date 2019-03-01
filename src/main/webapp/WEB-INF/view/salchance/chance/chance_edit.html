@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+
+                            <#input id="chcSource" name="机会来源" value="${item.chcSource}" underline="true"/>
+                            <#input id="chcCustName" name="客户名称" value="${item.chcCustName}" underline="true"/>
+                            <#input id="chcTitle" name="概要" value="${item.chcTitle}" underline="true"/>
+                            <#input id="chcRate" name="成功机率" value="${item.chcRate}" underline="true"/>
+                            <#input id="chcLinkman" name="联系人" value="${item.chcLinkman}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="chcTel" name="联系电话" value="${item.chcTel}" underline="true"/>
+                            <#input id="chcCreateId" name="创建人编号" value="${item.chcCreateId}" underline="true"/>
+                            <#input id="chcCreateDate" name="创建时间" value="${item.chcCreateDate}" underline="true"/>
+                            <#input id="chcDueId" name="指派的客户经理编号" value="${item.chcDueId}" underline="true"/>
+                            <#input id="chcDueDate" name="指派时间" value="${item.chcDueDate}" underline="true"/>
+                            <#input id="chcStatus" name="状态：1--未指派；2--已指派3--开发成功；4--终止开发(开发失败)。" value="${item.chcStatus}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ChanceInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ChanceInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/salchance/chance/chance_info.js"></script>
+@}

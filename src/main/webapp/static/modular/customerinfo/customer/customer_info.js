@@ -45,7 +45,6 @@ CustomerInfoDlg.close = function() {
  */
 CustomerInfoDlg.collectData = function() {
     this
-    .set('custNo')
     .set('custName')
     .set('custRegion')
     .set('custManagerId')

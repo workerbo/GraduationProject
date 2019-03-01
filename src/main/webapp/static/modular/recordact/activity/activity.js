@@ -14,7 +14,7 @@ var Activity = {
 Activity.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '主键', field: 'id', visible: true, align: 'center', valign: 'middle'},
+            {title: '主键', field: 'id', visible: false, align: 'center', valign: 'middle'},
             {title: '客户编号', field: 'atvCustNo', visible: true, align: 'center', valign: 'middle'},
             {title: '交往日期', field: 'atvDate', visible: true, align: 'center', valign: 'middle'},
             {title: '交往地点', field: 'atvPlace', visible: true, align: 'center', valign: 'middle'},

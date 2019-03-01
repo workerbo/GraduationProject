@@ -45,7 +45,6 @@ ActivityInfoDlg.close = function() {
  */
 ActivityInfoDlg.collectData = function() {
     this
-    .set('id')
     .set('atvCustNo')
     .set('atvDate')
     .set('atvPlace')

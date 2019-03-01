@@ -14,7 +14,7 @@ var Customer = {
 Customer.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '主键', field: 'custNo', visible: true, align: 'center', valign: 'middle'},
+            {title: '主键', field: 'custNo', visible: false, align: 'center', valign: 'middle'},
             {title: '客户名称', field: 'custName', visible: true, align: 'center', valign: 'middle'},
             {title: '地区', field: 'custRegion', visible: true, align: 'center', valign: 'middle'},
             {title: '客户经理编号', field: 'custManagerId', visible: true, align: 'center', valign: 'middle'},

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.LostMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.Lost">
+        <id column="id" property="id" />
+        <result column="lst_cust_no" property="lstCustNo" />
+        <result column="lst_cust_manager_id" property="lstCustManagerId" />
+        <result column="lst_last_order_date" property="lstLastOrderDate" />
+        <result column="lst_lost_date" property="lstLostDate" />
+        <result column="lst_delay" property="lstDelay" />
+        <result column="lst_reason" property="lstReason" />
+        <result column="lst_status" property="lstStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, lst_cust_no, lst_cust_manager_id, lst_last_order_date, lst_lost_date, lst_delay, lst_reason, lst_status
+    </sql>
+
+</mapper>

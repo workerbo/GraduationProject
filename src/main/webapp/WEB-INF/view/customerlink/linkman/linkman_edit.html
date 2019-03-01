@@ -1,0 +1,32 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="lkmCustNo" name="客户编号" value="${item.lkmCustNo}" underline="true"/>
+                            <#input id="lkmName" name="联系人名称" value="${item.lkmName}" underline="true"/>
+                            <#input id="lkmSex" name="性别" value="${item.lkmSex}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="lkmPostion" name="职位" value="${item.lkmPostion}" underline="true"/>
+                            <#input id="lkmTel" name="办公室电话" value="${item.lkmTel}" underline="true"/>
+                            <#input id="lkmMobile" name="手机" value="${item.lkmMobile}" underline="true"/>
+                            <#input id="lkmMemo" name="备注" value="${item.lkmMemo}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="LinkmanInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="LinkmanInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/customerlink/linkman/linkman_info.js"></script>
+@}

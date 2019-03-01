@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+
+                            <#input id="lstCustNo" name="客户编号" value="${item.lstCustNo}" underline="true"/>
+                            <#input id="lstCustManagerId" name="客户经理编号" value="${item.lstCustManagerId}" underline="true"/>
+                            <#input id="lstLastOrderDate" name="上次下单时间" value="${item.lstLastOrderDate}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="lstLostDate" name="确认流失时间" value="${item.lstLostDate}" underline="true"/>
+                            <#input id="lstDelay" name="暂缓措施" value="${item.lstDelay}" underline="true"/>
+                            <#input id="lstReason" name="流失原因" value="${item.lstReason}" underline="true"/>
+                            <#input id="lstStatus" name="流失状态 1-警告，2-暂缓流失，3-已流失" value="${item.lstStatus}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="LostInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="LostInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/customerlost/lost/lost_info.js"></script>
+@}

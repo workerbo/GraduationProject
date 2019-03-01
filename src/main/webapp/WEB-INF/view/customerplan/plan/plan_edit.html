@@ -1,0 +1,29 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+
+                            <#input id="plaDate" name="日期" value="${item.plaDate}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="plaTodo" name="计划项" value="${item.plaTodo}" underline="true"/>
+                            <#input id="plaResult" name="执行结果" value="${item.plaResult}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PlanInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PlanInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/customerplan/plan/plan_info.js"></script>
+@}
