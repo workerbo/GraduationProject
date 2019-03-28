@@ -481,7 +481,7 @@ CREATE TABLE `guns`.`cst_customerservice` (
   `svr_result` VARCHAR(450) NULL COMMENT '处理结果',
   `svr_satisfy` INT NULL COMMENT '满意度',
   PRIMARY KEY (`id`))
-COMMENT = '客户服务表';sal_plan
+COMMENT = '客户服务表';
 
 
 DROP TABLE IF EXISTS `guns`.`sal_plan`;
